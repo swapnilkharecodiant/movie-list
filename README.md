@@ -1,4 +1,4 @@
-# Movie Banner Management
+# Movie Management
 
 #### Assignment - React / NextJS Full Stack Developer
 

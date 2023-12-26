@@ -5,9 +5,9 @@
 #### Develop a web app. The app itself consists of a login screen and screens for displaying, creating and editing movies.
 
 The movie entity consists of three fields:
-1.	title (text)
-2.	publishing year (number)
-3.	poster (image)
+- title (text)
+- publishing year (number)
+- poster (image)
 
 #### You will be responsible for building the front end and the backend API
 
@@ -15,19 +15,19 @@ The movie entity consists of three fields:
 https://www.figma.com/file/rsilPqu30TpPX7IOPqLPAf/Movie-list?node-id=3%3A136
 
 #### Note that the design file consists of several pages:
-1.	Styleguide - all colors, typography and spacings are defined there
-2.	Components - components used within the app
-3.	Web - The design for the web app
-4.	Mobile - design for the Flutter developer assignment, but you can use it for the responsive design (not required, but does add extra points)
+- Styleguide - all colors, typography and spacings are defined there
+- Components - components used within the app
+- Web - The design for the web app
+- Mobile - design for the Flutter developer assignment, but you can use it for the responsive design (not required, but does add extra points)
 
 #### The assignment code must be submitted as a public GitHub repository and deployed in a cloud environment (AWS, Azure, or GCP)
 
 #### We will get extra points for:
-1.	Hosting the app on platforms such as GitHub pages, Heroku etc.
-2.	Mobile responsiveness
-3.	Form validation - showing when email/password format isn’t correct or when API returns an error
-4.	Movie list pagination
-5.	State management
-6.	Localization
-7.	API documentation 
-8.	Creativity - add anything you want to the app. 
+- Hosting the app on platforms such as GitHub pages, Heroku etc.
+- Mobile responsiveness
+- Form validation - showing when email/password format isn’t correct or when API returns an error
+- Movie list pagination
+- State management
+- Localization
+- API documentation 
+- Creativity - add anything you want to the app. 

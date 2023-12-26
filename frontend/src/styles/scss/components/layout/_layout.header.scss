@@ -1,0 +1,266 @@
+.header{
+    padding-left: 15px;
+    background: $white;
+    box-shadow: 0px 3px 15px rgba($black, 0.08);
+    position: fixed;
+    left: $sidebar-width;
+    width: calc(100% - $sidebar-width);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    z-index: 1032;
+    transition: left 450ms ease;
+    .icon{
+        font-size: 22px;
+        color: $primary;
+    }
+    &_signout{
+        background-color: $primary;
+        font-size: 16px;
+        color: $white;
+        height: 100%;
+        border-radius: 0;
+        padding: 10px;
+        .icon{
+            color: $white;
+            margin-right: 10px;
+        }
+    }
+    &_notify{
+        margin-right: 15px;
+        .icon{
+            font-size: 24px;
+        }
+    }
+    .headerSettings{
+        li{
+            &:not(:last-child){
+                margin-bottom: 3px;
+            }
+        }
+        &_item{
+            padding: 8px 15px;
+            color: $text-gray-700;
+            @include transition(all 0.3s ease);
+            .icon{
+                margin-right: 12px;
+                font-size: 20px;
+                color: $text-gray-700;
+            }
+            &:hover{
+                background-color: $bg-light;
+                color: $primary;
+                .icon{
+                    color: $primary;
+                }
+            }
+        }
+    }
+    .userProfile{
+        margin-right: 15px;
+    }
+    &Notification{
+        &_head{
+            background-color: $primary;
+            padding: 15px;
+            h3{
+                color: $white;
+                font-size: 18px;
+                font-family: font(md);
+            }
+            .badge-light{
+                color: $primary;
+                background-color: $white;
+                border-radius: 3px;
+            }
+        }
+        &_tab{
+            .nav{
+                &-tabs{
+                    background-color: $primary;
+                    border-bottom: 0;
+                    margin-bottom: 0;
+                    padding: 10px 10px 0 10px;
+                    .nav-link{
+                        border: 0;
+                        padding: 6px 15px;
+                        font-size: 15px;
+                        color: $white;
+                        &.active{
+                            color: $primary;
+                        }
+                    }
+                }
+            }
+            .tab-content{
+                padding: 10px;
+                height: 300px;
+                overflow-y: auto;
+            }
+            .notifyItem{
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 3px;
+                @include transition(all 0.2s ease);
+                &:hover{
+                    background-color: rgba($primary, 0.05);
+                }
+                a{
+                    color: $text-gray-800;
+                }
+                .avatar{
+                    background-color: transparent;
+                }
+                &_text{
+                    p{
+                        @include flexcenter(y);
+                        .icon{
+                            font-size: 15px;
+                            margin-right: 7px;
+                        }
+                        font-size: 13px;
+                        color: rgba($text-gray-800, 0.50);
+                    }
+                }
+                &_empty{
+                    padding: 40px 20px;
+                    .icon{
+                        font-size: 60px;
+                        color: $primary;
+                    }
+                    h4{
+                        max-width: 200px;
+                        margin: 20px auto 0 auto;
+                        font-size: 18px;
+                        font-family: font(md);
+                        color: $text-gray-800;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    .dropdown{
+        &-toggle{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba($primary, 0.10);
+            @include transition(all 0.3s ease);
+            cursor: pointer;
+            &:hover{
+                background-color: rgba($primary, 0.25);
+                @include transition(all 0.3s ease);
+            }
+            &.active{
+                background-color: rgba($primary, 0.25);
+                .icon{
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        width: 8px;
+                        height: 8px;
+                        background-color: $primary;
+                        border-radius: 50%;
+                        top: 1px;
+                        right: 2px;
+                        border: 2px solid #c2dde2;
+                    }
+                }
+            }
+            &::after{
+                display: none;
+            }
+            
+        }
+        &-menu-lg{
+            padding: 0;
+        }
+    }
+    @include media-breakpoint-down(xl){
+        left: 0;
+        width: 100%;
+        // height: 50px;
+        .toggleLeftSidebar{
+            em{font-size: 30px;}
+        }
+    }
+    @include media-breakpoint-down(lg){
+        height: 50px;
+        .nk-header-brand{
+            .logo{
+                img{ max-width: 130px;}
+            }
+        }
+        .dropdown-toggle{
+            width: 35px;
+            height: 35px;
+        }
+        .icon{font-size: 20px;}
+    }
+    @include media-breakpoint-down(md){
+        .nk-header-brand{
+            .logo{
+                img{ max-width: 110px;}
+            }
+            .toggleLeftSidebar{
+                em{font-size: 25px;}
+            }
+        }
+        &_signout{padding: 6px 8px;}
+    }
+    @include media-breakpoint-down(sm){
+        padding-left: 10px;
+        .dropdown{
+            &.position-sm-static{
+                position: static !important;
+            }
+        }
+        &_notify{margin-right: 8px;
+            .dropdown-menu{
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+        &Notification{
+            &_head{
+                h3{
+                    font-size: 16px;
+                }
+            }
+            &_tab{
+                .nav-tabs{
+                    padding-top: 0;
+                    .nav-link{
+                        font-size: 14px;
+                    }
+                }
+                .tab-content{
+                    height: 350px;
+                } 
+            }
+        }
+        .headerSettings{
+            &_item{
+                .icon{
+                    font-size: 18px;
+                }
+            }
+        }
+        &_signout{
+            .icon{margin-right: 0;}
+            span{display: none;}
+        }
+        .nk-header-brand{
+            .logo{
+                img{ max-width: 100px;}
+            }
+        }
+        .userProfile{margin-right: 8px;}
+    }
+    
+}

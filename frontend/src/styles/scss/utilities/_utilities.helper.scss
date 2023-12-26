@@ -1,0 +1,110 @@
+
+//Element
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  font-size: 16px;
+  line-height: 22px;
+  font-family: font(rg);
+  position: relative;
+  color: $white;
+  background-color: $secondary;
+  @include media-breakpoint-down(sm) {
+    font-size: 14px;
+  }
+}
+a,
+.btn {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    @include transition(all 0.4s);
+  }
+}
+//bg-image
+.bg-img{
+  background-image: url('../../images/waves.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+}
+
+// generic
+:focus {
+  outline: 0 !important;
+}
+::-moz-selection {
+  color: $white;
+  background: $primary;
+}
+::selection {
+  color: $white;
+  background: $primary;
+}
+::-webkit-scrollbar {
+  width: 6px;height: 6px;
+  @include media-breakpoint-down(lg) {
+      width: 4px;height: 4px;
+  }
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none; background-color: #e2e5e6;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: none; background-color: $primary;
+}
+
+// Helpers
+.link{
+  &-primary {
+    color: $primary !important;
+    &:hover, &:active, &:focus {
+      color: darken($primary, $amount: 6%) !important;
+    }
+  }
+  &-secondary{
+    color: $text-gray-700 !important;
+    &:hover, &:active, &:focus {
+      color: darken($text-gray-700, $amount: 6%) !important;
+    }
+  }
+}
+.title{
+  &-md{font-size: 20px; margin-bottom: 8px;}
+  &-sm{font-size: 18px; margin-bottom: 6px;}
+}
+.text-primary{color: $primary !important;}
+.text-success{color: $success !important;}
+.text-danger{color: $danger !important;}
+.bg-success{
+  background-color: $success !important;
+  &-subtle{background: rgba($success, 0.15) !important;}
+}
+.bg-danger{
+  background-color: $danger !important;
+  &-subtle{background: rgba($danger, 0.15) !important;}
+}
+
+.font-md{font-family: font(md) !important;}
+.font-sb{font-family: font(sb) !important;}
+.font-bd{font-family: font(bd) !important;}
+.fs-14{font-size: 14px !important;}
+.fs-15{font-size: 15px !important;
+  @include media-breakpoint-down(lg){
+    font-size: 14px !important;
+  }
+}
+.fs-16{font-size: 16px !important;
+  @include media-breakpoint-down(lg){
+    font-size: 15px!important;
+  }
+  @include media-breakpoint-down(sm){
+    font-size: 14px!important;
+  }
+}

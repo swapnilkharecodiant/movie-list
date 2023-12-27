@@ -18,11 +18,12 @@ export default {
       const userDetails = await user.findOne({ where: { email } });
       if (userDetails && await bcrypt.compare(password, userDetails?.password)) {
         const { ...userData } = userDetails.get();
+        delete userData.token;
         const token = await jwt.createToken(userData);
         delete userData.password;
         userData.token = token;
         req.userInfo = userData;
-        userRepository.saveUserToken({ token });
+        await userRepository.saveUserToken({ token });
         next();
       } else {
         utility.handleResponse(res, false, null, 'Invalid email or password', httpStatus.BAD_REQUEST);

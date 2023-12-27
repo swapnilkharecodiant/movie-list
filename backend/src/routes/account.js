@@ -19,7 +19,6 @@ router.post(
 router.post(
   '/logout',
   authMiddleware,
-  validateMiddleware({ schema: accountValidator.loginSchema }),
   accountController.logout,
 );
 

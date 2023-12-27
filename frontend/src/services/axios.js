@@ -1,7 +1,7 @@
 
 import { toast } from "react-toastify";
 import axios from "axios";
-import { getLocalStorageToken } from "@/utils/common.util";
+import { getLocalStorageToken, removeLocalStorageToken } from "@/utils/common.util";
 import dotenv from "dotenv";
 
 
@@ -10,7 +10,8 @@ dotenv.config();
 const APIrequest = async ({ method, bodyData, url, baseURL, queryParams, token = "" }) => {
 
   const apiToken = token !== "" ? token : getLocalStorageToken();
-
+  
+  
   try {
 
     const axiosConfig = {
@@ -85,9 +86,20 @@ const APIrequest = async ({ method, bodyData, url, baseURL, queryParams, token =
       
       if (errorRes.data.message) {
           toast.warning(errorRes.data.message)
+          
+          removeLocalStorageToken();
+        
+          if ([401].includes(errorRes.status)) {
+            removeLocalStorageToken();
+            window.location.replace('/');
+   
+      
+        
+       }
         }
         else
         toast.warning("error in api request")
+     
 
       
     }

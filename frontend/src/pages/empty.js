@@ -6,7 +6,7 @@ function EmptyPage() {
 const router =useRouter();
   return (
     <div>
-        <section className='signUppage emptyPage'>
+        <section className='signUppage emptyPage bg-img'>
             <Container>
                 <div className='vh-100 d-flex align-items-center justify-content-center'>
                     <div className='text-center'>

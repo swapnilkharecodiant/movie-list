@@ -2,7 +2,7 @@
   margin-bottom: 24px;
   position: relative;
   .form-label{
-    color:$text-gray-800; 
+    // color:$text-gray-800; 
     font-size: 14px; 
     line-height: 1; 
     margin-bottom: 10px;
@@ -25,10 +25,16 @@
     border-color:  $form-border;
     background: $form-input;
     font-size: 14px; 
-    color: $white;
+    color: $white!important;
     padding: 5px 15px;
     height:45px;
     font-family: font(rg);
+    &::value{
+      color: $white;
+    }
+    &.is-invalid{
+      border-color: $danger!important;
+    }
     @include placeholder{
       color:  $white;
     }
@@ -43,17 +49,26 @@
     &:-webkit-autofill:hover, 
     &:-webkit-autofill:focus, 
     &:-webkit-autofill:active{
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: $white;
         transition: background-color 5000s ease-in-out 0s;
     }
     &.dateSelect{cursor: pointer;}
   }
   .form-check{
+    &-label{
+      cursor: pointer;
+    }
     &-input{
+      cursor: pointer;
       background-color: $form-input;
       border-color: $form-border;
       width: 18px;
       height: 18px;
-      &:focus,&:checked{
+      &:focus{
+        box-shadow: none;
+      }
+      &:checked{
         box-shadow: none;
         background-color: $primary;
       }

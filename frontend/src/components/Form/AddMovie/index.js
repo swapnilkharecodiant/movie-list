@@ -4,7 +4,7 @@ import validation from "./validation";
 import FormTextField from "@/components/Input";
 import { UploadProfile } from "@/components/Antd";
 
-export default function AddMovie({onSubmit,imageUrl,setImageUrl,movie}) {
+export default function AddMovie({onSubmit,imageUrl,setImageUrl,movie,onCancel}) {
 
     const initialValues = {
         year: movie?.publishingYear || "",
@@ -27,7 +27,7 @@ export default function AddMovie({onSubmit,imageUrl,setImageUrl,movie}) {
                      <Form action="#" noValidate onSubmit={props.handleSubmit}>
 
                             <div className='row'>
-                                <div className='col-lg-5'>
+                                <div className='col-xl-5 col-md-5 col-sm-6 order-2 order-sm-1'>
                                     <div className='text-center'>
                                         <div class="uploadDocument">
                                             <label for="uploadDocument">
@@ -38,13 +38,13 @@ export default function AddMovie({onSubmit,imageUrl,setImageUrl,movie}) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-lg-4 offset-md-1'>
+                                <div className='col-xl-4 col-md-5 col-sm-6 offset-md-1 order-1 order-sm-2'>
                                     <FormGroup className='form-group' >
                                         <FormTextField
                                             controlId="validationFormik01"
                                             type="text"
                                             name="title"
-                                            className="form-control"
+                                            className=""
                                             labelClass="labelText"
                                             placeholder='Title'
                                         />
@@ -54,24 +54,29 @@ export default function AddMovie({onSubmit,imageUrl,setImageUrl,movie}) {
                                             controlId="validationFormik01"
                                             type="text"
                                             name="year"
-                                            className="form-control form-control-md"
+                                            className="inputWidth"
                                             labelClass="labelText"
                                             placeholder='Publishing year'
                                         />
                                     </FormGroup >
-                                    <div className='d-flex createMovie_btn'>
-                                        <Button className='btn btn-outline w-100 me-3'>
+                                    <div className='d-sm-flex d-none createMovie_btn order-3'>
+                                        <Button className='w-100 me-3' variant="outline" onClick={()=>onCancel()}>
                                             Cancel
                                         </Button>
-                                        <Button className='btn btn-primary w-100' type="submit" >
+                                        <Button className='w-100' variant="primary" type="submit">
                                             Submit
                                         </Button>
                                     </div>
                                 </div>
+                                <div className='d-sm-none d-flex createMovie_btn order-3'>
+                                        <Button className='w-100 me-3' variant="outline" onClick={()=>onCancel()}>
+                                            Cancel
+                                        </Button>
+                                        <Button className='w-100' variant="primary" type="submit">
+                                            Submit
+                                        </Button>
+                                    </div>
                             </div>
-
-
-
                         </Form>)}}
                 </Formik>
 

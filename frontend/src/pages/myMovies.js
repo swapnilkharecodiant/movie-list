@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import EmptyPage from "./empty";
 import Pagination from "@/components/Pagination";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { MovieCard } from "@/components";
 import Link from "next/link";
 import { moviesService } from "@/services/movies/index.service";
@@ -14,72 +14,112 @@ import { getLocalStorageToken, removeLocalStorageToken } from "@/utils/common.ut
 export default function MovieList() {
 
 
-  const [movieList, setMovieList] = useState([1,2,3]);
+  const [movieList, setMovieList] = useState([]);
   const router = useRouter();
-  console.log();
+  const [param, setParam] = useState({});
   const [noOfPage, setNoOfPage] = useState();
   const [page, setPage] = useState(1);
   const [sizePerPage] = useState(8);
   const [totalCount, setTotalCount] = useState();
+  const [loading ,setLoading]=useState(false);
 
+
+  const { pathname, query } = router;
+
+  const tableReset = () => {
+    setLoading(false);
+    setMovieList([]);
+    setNoOfPage(0);
+    setTotalCount(0);
+    setPage(1);
+  };
+
+
+  const navigateWithParam = (data, router, pathname) => {
+    const searchParams = new URLSearchParams(data).toString();
+    router.push(`${pathname}?${searchParams}`);
+  };
 
   const goToPage = (pageNo) => {
     const newParams = { ...param };
     if (pageNo) {
       newParams.page = pageNo;
     }
-    navigateWithParam(newParams, navigate, pathname);
+    navigateWithParam(newParams, router, pathname);
     tableReset();
+   
   };
 
 
-  const logOut=async()=>{
- try{
-    const res =await userService.logOut();
-  if(res?.success)
-  {
-  removeLocalStorageToken();
-  router.push("/")
-  }
+  const logOut = async () => {
+    try {
+      const res = await userService.logOut();
+      if (res?.success) {
+        removeLocalStorageToken();
+        router.push("/")
+      }
 
- }
- catch(err){
+    }
+    catch (err) {
 
 
- }
+    }
   }
   const getAllMovie = async () => {
     try {
+     
       let queryParams = {
         offset: (page - 1) * sizePerPage,
         limit: sizePerPage,
       };
-        const res = await moviesService.movieList(queryParams);
-        const { data, success } = res;
+      setLoading(true)
+      const res = await moviesService.movieList(queryParams);
+      const { data, success } = res;
 
-        
-        if (success) {
-          setMovieList(data?.rows);
-          setTotalCount(data.count);
-          setNoOfPage(data?.count > 0 ? Math.ceil(data?.count / sizePerPage) : 1);
-        }
+
+      if (success) {
+        setLoading(false)
+        setMovieList(data?.rows);
+        setTotalCount(data?.count);
+        setNoOfPage(data?.count > 0 ? Math.ceil(data?.count / sizePerPage) : 1);
+      }
+      else{
+        toast.warning(res?.message)
+      }
     } catch (error) {
-       toast.error(error);
+      toast.error(error);
     }
-}
+  }
 
 
   useEffect(() => {
-    if(!getLocalStorageToken())
-    {
+    if (!getLocalStorageToken()) {
       router.push("/")
     }
-    else{
-        getAllMovie(); 
+    else {
+     if(!movieList.length){
+      goToPage(1);
+      getAllMovie();
+     }
     }
   }, [])
 
-  if (!movieList?.length) {
+  useEffect(() => {
+    if(getLocalStorageToken()){
+    getAllMovie();  
+    } 
+  }, [page]);
+
+  useEffect(() => {
+    if (query) {
+      const { query: { page } } = router;
+      // setParam(page);
+      setPage(page ?? 1);
+
+    }
+  }, [router]);
+
+  if (movieList?.length<0) {
 
     return <>
       <EmptyPage />
@@ -88,6 +128,8 @@ export default function MovieList() {
   }
   else {
     return <>
+     
+  
       <section className='myMoviesPage bg-img'>
         <Container>
           <div className='myMoviesPage_head d-flex align-items-center justify-content-between'>
@@ -97,21 +139,22 @@ export default function MovieList() {
                 <em className='icon icon-plus-circle' />
               </Link>
             </div>
-            <a onClick={()=>logOut()}>Logout <em className='icon icon-logout' /></a>
+            <a onClick={() => logOut()}>Logout <em className='icon icon-logout' /></a>
           </div>
-
+          {loading?<center><Spinner animation="border" variant="dark" /></center>:
           <div className=''>
-          <Row className='g-md-4 g-3'>
-            {  movieList?.length>0 && movieList?.map((item,index)=>{  return(
-                <Col xl={3} md={4} xs={6} key={index}>
-                  <MovieCard item={item}  />
-                </Col>)
+            <Row className='g-md-4 g-3'>
+              {movieList?.length  && movieList?.map((item, index) => {
+                return (
+                  <Col xl={3} md={4} xs={6} key={index}>
+                    <MovieCard item={item} />
+                  </Col>)
 
-            })
-            
-            }
-              </Row>
-          </div>
+              })
+
+              }
+            </Row>
+         
 
           <Pagination
             count={totalCount}
@@ -122,11 +165,12 @@ export default function MovieList() {
           // handleLimitChange={handleLimitChange}
           // hasLimit={hasLimit}
           />
+           </div>}
 
         </Container>
       </section>
 
     </>
-
-  }
+}
+  
 }

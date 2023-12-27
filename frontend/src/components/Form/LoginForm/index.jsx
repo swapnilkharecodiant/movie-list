@@ -30,7 +30,7 @@ function UserLoginForm({ onSubmit }) {
                   controlId="validationFormik01"
                   type="email"
                   name="email"
-                  className="form-control"
+                  className=""
                   labelClass="labelText"
                   placeholder='Email'
                 />

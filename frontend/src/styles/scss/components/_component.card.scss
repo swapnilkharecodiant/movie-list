@@ -10,24 +10,14 @@
     }
     &_info{
         padding: 16px 8px 8px 8px;
-        h2{
-            font-size: 20px;
-            font-family: font(md);
-            margin-bottom: 8px;
-        }
-        p{
-            font-size: 14px;
-        }
+        h2{font-size: 20px;font-family: font(md);margin-bottom: 8px;text-transform: capitalize;}
+        p{font-size: 14px;}
     }
     @include media-breakpoint-down(md){
         &_info{
-            h2{
-                font-size: 18px;
-            }
+            h2{font-size: 18px;}
         }
-        img{
-            height: 300px;
-        }
+        img{height: 300px;}
     }
     @include media-breakpoint-down(sm){
         padding: 0;

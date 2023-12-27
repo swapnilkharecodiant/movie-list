@@ -1,9 +1,4 @@
 .createMovie{
-    background-color: $secondary;
-    background-image: url('../../images/waves.png');
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: 100%;
     padding: 120px 0;
     h1{
         font-size: 48px;
@@ -29,7 +24,8 @@
             cursor: pointer;
             margin-bottom: 0;
             transition: all .5s;
-            border: 2px dashed #fff;
+            border: 2px dashed $white;
+            background-color: rgba($white, 0.10);
             padding: 10px;
             height: 504px;
             border-radius: 10px;
@@ -41,10 +37,19 @@
             font-size: 14px;
             color: #fff;
             line-height: 24px;
+            font-family: font(rg);
         }
         em{
             margin-bottom: 8px;
             font-size: 20px;
+            color: $white;
+        }
+        .ant-upload-wrapper, .ant-upload{
+            width: 100%;
+        }
+        img{
+            height: 480px;
+            object-fit: cover;
         }
     }
     @media (max-width: 1599px) {
@@ -63,6 +68,9 @@
             label{
                 height: 450px;
             }
+            img{
+                height: 425px;
+            }
         }
     }
     @include media-breakpoint-down(xl){
@@ -76,6 +84,9 @@
         .uploadDocument{
             label{
                 height: 400px;
+            }
+            img{
+                height: 375px;
             }
         }
     }
@@ -96,6 +107,9 @@
         .uploadDocument{
             label{
                 height: 372px;
+            }
+            img{
+                height: 345px;
             }
         }
     }

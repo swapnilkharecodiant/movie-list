@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 function Pagination({  page,  noOfPage, goToPage }) {
-  console.log('>>>>>>>>',noOfPage);
+  
   return (
     <div className="commonPagination d-flex justify-content-center align-items-center text-center">
       

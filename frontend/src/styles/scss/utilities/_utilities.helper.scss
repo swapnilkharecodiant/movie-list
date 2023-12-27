@@ -29,10 +29,14 @@ a,
 }
 //bg-image
 .bg-img{
+  min-height: 100vh;
   background-image: url('../../images/waves.png');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 100%;
+  @include media-breakpoint-down(sm){
+    background-image: url('../../images/waves-mobile.png');
+  }
 }
 
 // generic
@@ -58,53 +62,4 @@ a,
 }
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: none; background-color: $primary;
-}
-
-// Helpers
-.link{
-  &-primary {
-    color: $primary !important;
-    &:hover, &:active, &:focus {
-      color: darken($primary, $amount: 6%) !important;
-    }
-  }
-  &-secondary{
-    color: $text-gray-700 !important;
-    &:hover, &:active, &:focus {
-      color: darken($text-gray-700, $amount: 6%) !important;
-    }
-  }
-}
-.title{
-  &-md{font-size: 20px; margin-bottom: 8px;}
-  &-sm{font-size: 18px; margin-bottom: 6px;}
-}
-.text-primary{color: $primary !important;}
-.text-success{color: $success !important;}
-.text-danger{color: $danger !important;}
-.bg-success{
-  background-color: $success !important;
-  &-subtle{background: rgba($success, 0.15) !important;}
-}
-.bg-danger{
-  background-color: $danger !important;
-  &-subtle{background: rgba($danger, 0.15) !important;}
-}
-
-.font-md{font-family: font(md) !important;}
-.font-sb{font-family: font(sb) !important;}
-.font-bd{font-family: font(bd) !important;}
-.fs-14{font-size: 14px !important;}
-.fs-15{font-size: 15px !important;
-  @include media-breakpoint-down(lg){
-    font-size: 14px !important;
-  }
-}
-.fs-16{font-size: 16px !important;
-  @include media-breakpoint-down(lg){
-    font-size: 15px!important;
-  }
-  @include media-breakpoint-down(sm){
-    font-size: 14px!important;
-  }
 }

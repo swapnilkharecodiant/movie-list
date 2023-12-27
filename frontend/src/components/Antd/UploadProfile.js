@@ -1,8 +1,9 @@
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Upload, message } from 'antd';
 import { useState } from 'react';
+import dotenv from "dotenv";
 
-
+dotenv.config();
 
 const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -51,7 +52,8 @@ const UploadProfile = ({ imageUrl, setImageUrl,name }) => {
         <div>
             {loading ? <LoadingOutlined /> :   <div
                 class="uploadDocument_caption d-flex align-items-center justify-center flex-column w-100">
-                <h6 class="mb-0">Drop an image here</h6>            <em className='icon icon-download' />
+                <em className='icon icon-download' />
+                <h6 class="mb-0">Drop an image here</h6> 
             </div>}
             
           
@@ -86,7 +88,7 @@ const UploadProfile = ({ imageUrl, setImageUrl,name }) => {
 
             <Upload
                 name='file'
-                action={process.env.NEXT_PUBLIC_BASE_PATH}
+                action={process.env.NEXT_PUBLIC_BASE_PATH+'media/upload'}
                 onChange={handleChange}
                 beforeUpload={beforeUpload}
                 showUploadList={false}
